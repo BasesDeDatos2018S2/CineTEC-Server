@@ -13,7 +13,7 @@ namespace CineTec.Logic {
         {
 
             NpgsqlConnection connection = new NpgsqlConnection();
-            var conectionString = "Server=192.168.100.12;Port=5432;User Id=postgres;Password=1517;Database=CineTec;";
+            var conectionString = "Server=cinetec.cg8mqwwu18oy.us-east-2.rds.amazonaws.com;Port=5432;User Id=tavo;Password=5uYypmvJqxCq5R22Dsqn;Database=CineTec";
 
             if (!string.IsNullOrWhiteSpace(conectionString))
             {
