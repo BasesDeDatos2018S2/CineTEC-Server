@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Threading.Tasks;
 using Npgsql;
+using System.Configuration;
 
 namespace CineTec.Logic { 
     public class ConnectionPostgreSQL
@@ -12,24 +13,25 @@ namespace CineTec.Logic {
         public NpgsqlConnection OpenConection()
         {
 
-            NpgsqlConnection connection = new NpgsqlConnection();
-            var conectionString = "Server=cinetec.cg8mqwwu18oy.us-east-2.rds.amazonaws.com;Port=5432;User Id=tavo;Password=5uYypmvJqxCq5R22Dsqn;Database=CineTec";
-
+            NpgsqlConnection conection = new NpgsqlConnection();
+            //"Data Source=cinetec.cg8mqwwu18oy.us-east-2.rds.amazonaws.com;Initial Catalog=CineTec;User ID=tavo;Password=5uYypmvJqxCq5R22Dsqn;";
+            //"Server=cinetec.cg8mqwwu18oy.us-east-2.rds.amazonaws.com;Port=5432;User Id=tavo;Password=5uYypmvJqxCq5R22Dsqn;Database=CineTec;";
+            string conectionString = System.Configuration.ConfigurationManager.ConnectionStrings["CineTec"].ConnectionString;
             if (!string.IsNullOrWhiteSpace(conectionString))
             {
 
                 try
                 {
-                    connection = new NpgsqlConnection(conectionString);
-                    connection.Open();
+                    conection = new NpgsqlConnection(conectionString);
+                    conection.Open();
                 }
                 catch (Exception)
                 {
-                    connection.Close();
+                    conection.Close();
                 }
 
             }
-            return connection;
+            return conection;
         }
     }
 }

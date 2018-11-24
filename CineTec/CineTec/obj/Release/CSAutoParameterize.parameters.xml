@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="CineTec-Web.config Connection String" description="CineTec Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="Server=cinetec.cg8mqwwu18oy.us-east-2.rds.amazonaws.com;Port=5432;User Id=tavo;Password=5uYypmvJqxCq5R22Dsqn;Database=CineTec" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\ggg\\Documents\\GitHub\\CineTEC-Server\\CineTec\\CineTec\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='CineTec']/@connectionString" />
+  </parameter>
+</parameters>
