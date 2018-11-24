@@ -10,7 +10,7 @@ using Npgsql;
 
 namespace CineTec.Controllers
 {
-    public class prueba
+    public class Prueba
     {
         public int Id_actor { get; set; }
         public int Id_movie { get; set; }        
@@ -29,19 +29,23 @@ namespace CineTec.Controllers
             {
                 using (connection)
                 {
-                
-                    NpgsqlCommand cmd = new NpgsqlCommand();
-                    cmd.Connection = connection;
-                    cmd.CommandText = "Select * from Actors_Movie";
-                    cmd.CommandType = CommandType.Text;
+
+                    NpgsqlCommand cmd = new NpgsqlCommand
+                    {
+                        Connection = connection,
+                        CommandText = "Select * from Actors_Movie",
+                        CommandType = CommandType.Text
+                    };
                     //NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
                     NpgsqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
 
-                        prueba prueba = new prueba();
-                        prueba.Id_actor = Convert.ToInt32(reader["Id_actor"]);
-                        prueba.Id_movie = Convert.ToInt32(reader["Id_movie"]);
+                        Prueba prueba = new Prueba
+                        {
+                            Id_actor = Convert.ToInt32(reader["Id_actor"]),
+                            Id_movie = Convert.ToInt32(reader["Id_movie"])
+                        };
                         list.Add(prueba);
 
                     }
