@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Net;
 using Npgsql;
 using CineTec.Models;
 
@@ -81,6 +82,35 @@ namespace CineTec.Logic
             {
                 return null;
             }
+        }
+
+        public void addMovie(Movie_Data data)
+        {
+            ConnectionPostgreSQL cn = new ConnectionPostgreSQL();
+            NpgsqlConnection conection = cn.OpenConection();
+            //DataTable dt = new DataTable();
+            try /* Select After Validations*/
+            {
+                using (conection)
+                {
+                    List<Object> Movie_List = new List<Object>();
+                    NpgsqlCommand cmd = new NpgsqlCommand
+                    {
+                        Connection = conection,
+                        CommandText = "Insert into movies values(" + data.id + ", " + data.Estado + "," + data.Nombre_Original + ", " + data.Nombre + "," + data.Duracion + "," + data.Director + "," + data.Clasificacion + "," + data.Imagen + ")",
+                        CommandType = CommandType.Text
+                    };
+                    //NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                    conection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
         }
 
     }

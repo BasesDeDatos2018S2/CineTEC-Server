@@ -41,6 +41,8 @@ namespace CineTec.Controllers
             return Ok(result);
         }
 
+
+
         // POST: api/Cinema
         public void Post([FromBody]string value)
         {

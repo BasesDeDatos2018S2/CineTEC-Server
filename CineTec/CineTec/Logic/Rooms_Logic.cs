@@ -51,5 +51,43 @@ namespace CineTec.Logic
                 return null;
             }
         }
+
+        public List<Object> GetButacasLlenas(int ID)
+        {
+            ConnectionPostgreSQL cn = new ConnectionPostgreSQL();
+            NpgsqlConnection conection = cn.OpenConection();
+            //DataTable dt = new DataTable();
+            try /* Select After Validations*/
+            {
+                using (conection)
+                {
+                    List<Object> Butacas = new List<Object>();
+                    NpgsqlCommand cmd = new NpgsqlCommand
+                    {
+                        Connection = conection,
+                        CommandText = "select* from usp_seats_projection("+ID+");",
+                        CommandType = CommandType.Text
+                    };
+                    //NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
+                    NpgsqlDataReader reader = cmd.ExecuteReader();
+                    cmd.Dispose();
+
+                    while (reader.Read())
+                    {
+                        Butaca_Data butaca_ = new Butaca_Data();
+                        butaca_.seats_id = Convert.ToInt32(reader["seats_id"]);
+                        butaca_.seat_column = Convert.ToInt32(reader["seat_column"]);
+                        butaca_.seat_row = Convert.ToInt32(reader["seat_row"]);
+                        Butacas.Add(butaca_);
+                    }
+                    conection.Close();
+                    return Butacas;
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

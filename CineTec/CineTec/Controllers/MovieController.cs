@@ -5,17 +5,21 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using CineTec.Logic;
+using CineTec.Models;
 
 namespace CineTec.Controllers
 {
     public class MovieController : ApiController
     {
+
+        private Movie_Logic movie = new Movie_Logic();
+
         // GET: api/Movie
         [Route("api/Movie")]
         [HttpGet]
         public IHttpActionResult Get()
         {
-            Movie_Logic movie = new Movie_Logic();
+            
             List<Object> result = movie.Movies();
             if (result != null)
             {
@@ -35,8 +39,11 @@ namespace CineTec.Controllers
         }
 
         // POST: api/Movie
-        public void Post([FromBody]string value)
+        public IHttpActionResult insertMovie([FromBody] Movie_Data value)
         {
+            this.movie.addMovie(value);
+            return Ok(HttpStatusCode.OK);
+
         }
 
         // PUT: api/Movie/5
