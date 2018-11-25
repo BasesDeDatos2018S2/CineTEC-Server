@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using CineTec.Models;
 
 namespace CineTec.Controllers
 {
@@ -22,8 +23,9 @@ namespace CineTec.Controllers
         }
 
         // POST: api/Reservation
-        public void Post([FromBody]string value)
+        public IHttpActionResult Post([FromBody] Compra_Butaca_Data data)
         {
+
         }
 
         // PUT: api/Reservation/5
