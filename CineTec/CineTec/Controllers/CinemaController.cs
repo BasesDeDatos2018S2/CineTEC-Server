@@ -10,10 +10,12 @@ namespace CineTec.Controllers
 {
     public class CinemaController : ApiController
     {
+
+        private Cinema_Logic cinema = new Cinema_Logic();
+
         // GET: api/Cinema
         public IHttpActionResult Get()
         {
-            Cinema_Logic cinema = new Cinema_Logic();
             var result = cinema.GetCinemas();
             if (result != null)
             {
@@ -29,6 +31,14 @@ namespace CineTec.Controllers
         public string Get(int id)
         {
             return "value";
+        }
+
+        [Route("api/Screening/Available/{id}")]
+        [HttpGet]
+        public IHttpActionResult GetAvailableScreening(int id)
+        {
+            var result = this.cinema.GetListMoviesProyect(id);
+            return Ok(result);
         }
 
         // POST: api/Cinema

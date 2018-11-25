@@ -97,19 +97,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ActorsController.cs" />
     <Compile Include="Controllers\CinemaController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
+    <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Controllers\RoomsController.cs" />
+    <Compile Include="Controllers\ScreeningController.cs" />
     <Compile Include="Facturacion\Datos.cs" />
     <Compile Include="Facturacion\Emisor.cs" />
     <Compile Include="Facturacion\FacturaElectronicaCR.cs" />
     <Compile Include="Facturacion\Receptor.cs" />
+    <Compile Include="Logic\Actors_Logic.cs" />
     <Compile Include="Logic\Cinema_Logic.cs" />
     <Compile Include="Logic\Client_Logic.cs" />
     <Compile Include="Logic\Facturacion_Logic.cs" />
     <Compile Include="Logic\Rooms_Logic.cs" />
+    <Compile Include="Logic\Screening_Logic.cs" />
+    <Compile Include="Models\Butaca_Data.cs" />
     <Compile Include="Models\Cinema_Data.cs" />
     <Compile Include="Logic\ConnectionPostgreSQL.cs" />
     <Compile Include="Global.asax.cs">
@@ -117,11 +123,16 @@
     </Compile>
     <Compile Include="Logic\Movie_Logic.cs" />
     <Compile Include="Models\Actors_Data.cs" />
+    <Compile Include="Models\Class1.cs" />
     <Compile Include="Models\Client_Data.cs" />
     <Compile Include="Models\Client_Data_Report.cs" />
+    <Compile Include="Models\Compra_Butaca_Data.cs" />
+    <Compile Include="Models\MoviesWithScreening.cs" />
     <Compile Include="Models\Movie_Data.cs" />
+    <Compile Include="Models\Movie_Data_Screening.cs" />
     <Compile Include="Models\Report_Data.cs" />
     <Compile Include="Models\Rooms_Data.cs" />
+    <Compile Include="Models\Screening_Data.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
