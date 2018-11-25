@@ -53,3 +53,4 @@ C:\Users\ggg\Documents\GitHub\CineTEC-Server\CineTec\CineTec\obj\Release\CineTec
 C:\Users\ggg\Documents\GitHub\CineTEC-Server\CineTec\CineTec\obj\Release\CineTec.csproj.CopyComplete
 C:\Users\ggg\Documents\GitHub\CineTEC-Server\CineTec\CineTec\obj\Release\CineTec.dll
 C:\Users\ggg\Documents\GitHub\CineTEC-Server\CineTec\CineTec\obj\Release\CineTec.pdb
+C:\Users\ggg\Documents\GitHub\CineTEC-Server\CineTec\CineTec\obj\Release\CineTec.csprojAssemblyReference.cache

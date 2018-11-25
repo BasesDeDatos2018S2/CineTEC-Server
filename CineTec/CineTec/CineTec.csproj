@@ -97,8 +97,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CinemaController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
+    <Compile Include="Logic\Cinema_Logic.cs" />
+    <Compile Include="Models\Cinema_Data.cs" />
     <Compile Include="Logic\ConnectionPostgreSQL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
