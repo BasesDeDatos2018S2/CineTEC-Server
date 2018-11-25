@@ -5,11 +5,14 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using CineTec.Models;
+using CineTec.Logic;
 
 namespace CineTec.Controllers
 {
     public class ReservationController : ApiController
     {
+        private Reservation_Logic reservation = new Reservation_Logic();
+
         // GET: api/Reservation
         public IEnumerable<string> Get()
         {
@@ -25,6 +28,8 @@ namespace CineTec.Controllers
         // POST: api/Reservation
         public IHttpActionResult Post([FromBody] Compra_Butaca_Data data)
         {
+            var result = reservation.CreateReservation(data);
+            return Ok(result);
 
         }
 

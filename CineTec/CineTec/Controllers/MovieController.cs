@@ -11,10 +11,12 @@ namespace CineTec.Controllers
     public class MovieController : ApiController
     {
         // GET: api/Movie
+        [Route("api/Movie")]
+        [HttpGet]
         public IHttpActionResult Get()
         {
             Movie_Logic movie = new Movie_Logic();
-            var result = movie.Movies();
+            List<Object> result = movie.Movies();
             if (result != null)
             {
                 return Ok(result);

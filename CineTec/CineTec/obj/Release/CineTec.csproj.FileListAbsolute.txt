@@ -110,3 +110,6 @@ D:\Proyectos-Programados\CineTEC-Server\CineTec\CineTec\obj\Release\CineTec.cspr
 D:\Proyectos-Programados\CineTEC-Server\CineTec\CineTec\obj\Release\CineTec.csproj.CopyComplete
 D:\Proyectos-Programados\CineTEC-Server\CineTec\CineTec\obj\Release\CineTec.dll
 D:\Proyectos-Programados\CineTEC-Server\CineTec\CineTec\obj\Release\CineTec.pdb
+C:\Users\ggg\Documents\GitHub\CineTEC-Server\CineTec\CineTec\bin\System.Web.Cors.dll
+C:\Users\ggg\Documents\GitHub\CineTEC-Server\CineTec\CineTec\bin\System.Web.Http.Cors.dll
+C:\Users\ggg\Documents\GitHub\CineTEC-Server\CineTec\CineTec\bin\System.Web.Http.Cors.xml

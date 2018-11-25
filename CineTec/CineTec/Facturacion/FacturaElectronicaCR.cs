@@ -37,8 +37,8 @@ namespace CineTec.Facturacion
         private string _codigoMoneda = "";
         private decimal _tipoCambio;
 
-        public FacturaElectronicaCR(string numeroConsecutivo, string numeroClave, Emisor emisor, Receptor receptor, 
-                                    string condicionVenta, string plazoCredito, string medioPago, 
+        public FacturaElectronicaCR(string numeroConsecutivo, string numeroClave, Emisor emisor, Receptor receptor,
+                                    string condicionVenta, string plazoCredito, string medioPago,
                                     DataSet dsDetalle, string codigoMoneda, decimal tipoCambio)
         {
             _numeroConsecutivo = numeroConsecutivo;
@@ -64,39 +64,39 @@ namespace CineTec.Facturacion
         public XmlDocument CreaXMLFacturaElectronica()
         {
             //try
-           // {
-                using (MemoryStream stream = new MemoryStream())
-                {
-                    // stream.CanTimeout = false;
-                    XmlTextWriter xmlWriter = new XmlTextWriter(stream, Encoding.UTF8);
-                    
-                    XmlDocument doc = new XmlDocument();
-                    GeneraXML(xmlWriter);
-                    stream.Seek(0, SeekOrigin.Begin );
-                    doc.Load(stream);
-                    xmlWriter.Close();
-                doc.Save("C:\\Users\\mauri\\test1.xml");
+            // {
+            using (MemoryStream stream = new MemoryStream())
+            {
+                // stream.CanTimeout = false;
+                XmlTextWriter xmlWriter = new XmlTextWriter(stream, Encoding.UTF8);
+
+                XmlDocument doc = new XmlDocument();
+                GeneraXML(xmlWriter);
+                stream.Seek(0, SeekOrigin.Begin);
+                doc.Load(stream);
+                xmlWriter.Close();
+                //doc.Save(Path.GetTempPath()+"test1.xml");
                 return doc;
-                }
-                /*
-                mXML = new System.IO.MemoryStream();
+            }
+            /*
+            mXML = new System.IO.MemoryStream();
 
-                System.Xml.XmlTextWriter writer = new System.Xml.XmlTextWriter(mXML, System.Text.Encoding.UTF8);
+            System.Xml.XmlTextWriter writer = new System.Xml.XmlTextWriter(mXML, System.Text.Encoding.UTF8);
 
-                writer.Formatting = System.Xml.Formatting.Indented;
-                XmlDocument docXML = new XmlDocument();
+            writer.Formatting = System.Xml.Formatting.Indented;
+            XmlDocument docXML = new XmlDocument();
 
-                GeneraXML(writer);
+            GeneraXML(writer);
 
-                mXML.Seek(0, System.IO.SeekOrigin.Begin);
+            mXML.Seek(0, System.IO.SeekOrigin.Begin);
 
-                docXML.Load(mXML);
+            docXML.Load(mXML);
 
-                writer.Close();
+            writer.Close();
 
-                // Retorna el documento xml y ahi se puede salvar docXML.Save
-                return docXML;
-                */
+            // Retorna el documento xml y ahi se puede salvar docXML.Save
+            return docXML;
+            */
             //}
             //catch (Exception ex)
             //{
@@ -108,38 +108,6 @@ namespace CineTec.Facturacion
         {
             try
             {
-                writer.WriteStartDocument();
-                writer.WriteStartElement("Factura");
-                writer.WriteElementString("test523", "a12ggggddd");
-                writer.WriteEndElement();
-                writer.WriteEndDocument();
-                writer.Flush();
-                //writer.WriteStartDocument();
-                // writer.WriteStartElement("Factura");
-                // writer.WriteElementString("test523","a12");
-
-                // writer.WriteAttributeString("xmlns", "https://tribunet.hacienda.go.cr/docs/esquemas/2017/v4.2/facturaElectronica");
-                // writer.WriteAttributeString("xmlns:ds", "http://www.w3.org/2000/09/xmldsig#");
-                // writer.WriteAttributeString("xmlns:vc", "http://www.w3.org/2007/XMLSchema-versioning");
-                // writer.WriteAttributeString("xmlns:xs", "http://www.w3.org/2001/XMLSchema");
-                // writer.WriteEndElement();
-
-
-                // 'Estos datos te los tiene que brindar los encargados del area financiera
-                // writer.WriteStartElement("Normativa");
-                // writer.WriteElementString("NumeroResolucion", "");
-                // writer.WriteElementString("FechaResolucion", "");
-                // writer.WriteEndElement(); // Normativa
-
-                // 'Aqui va la firma, despues la agregamos.
-
-                //writer.WriteEndElement();
-
-                // writer.WriteEndDocument();
-                // writer.Flush();
-
-
-                /*
                 writer.WriteStartDocument();
                 writer.WriteStartElement("FacturaElectronica");
 
@@ -157,13 +125,10 @@ namespace CineTec.Facturacion
 
                 // 'El formato de la fecha es yyyy-MM-ddTHH:mm:sszzz
                 writer.WriteElementString("FechaEmision", DateTime.Now.ToString("yyyy-MM-ddTHH:mm:sszzz"));
-                writer.WriteEndElement();
-
 
                 writer.WriteStartElement("Emisor");
-                writer.WriteElementString("Nombre", _emisor.Nombre);
-                writer.WriteEndElement();
 
+                writer.WriteElementString("Nombre", _emisor.Nombre);
                 writer.WriteStartElement("Identificacion");
                 writer.WriteElementString("Tipo", _emisor.Identificacion_Tipo);
                 writer.WriteElementString("Numero", _emisor.Identificacion_Numero);
@@ -183,7 +148,7 @@ namespace CineTec.Facturacion
                 writer.WriteStartElement("Telefono");
                 writer.WriteElementString("CodigoPais", _emisor.Telefono_CodigoPais);
                 writer.WriteElementString("NumTelefono", _emisor.Telefono_Numero.ToString());
-                //writer.WriteEndElement(); // 'Telefono
+                writer.WriteEndElement(); // 'Telefono
 
                 writer.WriteElementString("CorreoElectronico", _emisor.CorreoElectronico);
 
@@ -193,9 +158,6 @@ namespace CineTec.Facturacion
                                           // 'La ubicacion para el receptor es opcional por ejemplo
                 writer.WriteStartElement("Receptor");
                 writer.WriteElementString("Nombre", _receptor.Nombre);
-                writer.WriteEndElement();
-
-
                 writer.WriteStartElement("Identificacion");
                 // 'Los tipos de identificacion los puede ver en la tabla de datos
                 writer.WriteElementString("Tipo", _receptor.Identificacion_Tipo);
@@ -205,16 +167,15 @@ namespace CineTec.Facturacion
                 writer.WriteStartElement("Telefono");
                 writer.WriteElementString("CodigoPais", _receptor.Telefono_CodigoPais);
                 writer.WriteElementString("NumTelefono", _receptor.Telefono_Numero.ToString());
-                //writer.WriteEndElement(); // 'Telefono
+                writer.WriteEndElement(); // 'Telefono
 
                 writer.WriteElementString("CorreoElectronico", _receptor.CorreoElectronico);
 
                 writer.WriteEndElement(); // Receptor
                                           // '------------------------------------
 
-
-                writer.WriteStartElement("Venta");
                 // 'Loa datos estan en la tabla correspondiente
+
                 writer.WriteElementString("CondicionVenta", _condicionVenta);
                 // '01: Contado
                 // '02: Credito
@@ -234,8 +195,8 @@ namespace CineTec.Facturacion
                 // '04: Transferecia - deposito bancario
                 // '05: Recaudado por terceros            
                 // '99: Otros
-                /*
-                writer.WriteStartElement("DetalleServicio");
+
+                /*writer.WriteStartElement("DetalleServicio");
 
                 // '-------------------------------------
                 foreach (DataRow dr in _dsDetalle.Tables["detalle"].Rows)
@@ -271,16 +232,14 @@ namespace CineTec.Facturacion
                 }
                 // '-------------------------------------
 
-                writer.WriteEndElement(); // DetalleServicio
+                writer.WriteEndElement(); // DetalleServicio*/
 
-                *//*
-                writer.WriteEndElement(); // DetalleServicio
 
                 writer.WriteStartElement("ResumenFactura");
 
                 // Estos campos son opcionales, solo fin desea facturar en dólares
                 writer.WriteElementString("CodigoMoneda", _codigoMoneda);
-                writer.WriteElementString("TipoCambio", "aquitipocambio");
+                writer.WriteElementString("TipoCambio", "aqui_tipo_cambio");
                 // =================
 
                 // 'En esta parte los totales se pueden ir sumando linea a linea cuando se carga el detalle
@@ -311,7 +270,8 @@ namespace CineTec.Facturacion
                 writer.WriteEndElement();
                 writer.WriteEndDocument();
                 writer.Flush();
-                */
+
+
             }
             catch (Exception ex)
             {

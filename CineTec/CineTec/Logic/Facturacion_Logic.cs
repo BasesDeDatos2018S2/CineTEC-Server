@@ -54,42 +54,26 @@ namespace CineTec.Logic
             //DataTable dt = new DataTable();
             //try /* Select After Validations*/
             //{
-                using (conection)
+            using (conection)
+            {
+                NpgsqlCommand cmd = new NpgsqlCommand
                 {
-                    NpgsqlCommand cmd = new NpgsqlCommand
-                    {
-                        Connection = conection,
-                        CommandText = "Select * from usp_screening_with_cinema("+report_.ID_Proyection.ToString()+","+report_.Butacas_Ocupadas.Count().ToString()+")",
-                        CommandType = CommandType.Text
-                    };
-                    NpgsqlDataAdapter details = new NpgsqlDataAdapter(cmd);
-                    details.Fill(ds);
-                    Receptor receptor = GetReceptor(report_.ID_Cliente);
-                    Emisor emisor = GetEmisor();
-                    FacturaElectronicaCR factura = new FacturaElectronicaCR("50923191800310954724900100091010000000017120952430",
-                                                                            "00900001090000000019", emisor, receptor, "01", "01", "01",
-                                                                            ds, "01", 595);
-                    //var xml = factura.CreaXMLFacturaElectronica();
-                    //xml.Save(@"C:\Users\ggg\Escritorio\data.xml");
-                    /*
-                    using (var stream =  xml)
-                    {
-                        SmtpClient smtp = new SmtpClient
-                        {
-                            Port = 587,
-                            UseDefaultCredentials = true,
-                            Host = "smtp.gmail.com",
-                            EnableSsl = true
-                        };
-
-                        smtp.UseDefaultCredentials = false;
-                        smtp.Credentials = new NetworkCredential("teconstruyecompany@gmail.com", "teconstruye");
-                        var message = new System.Net.Mail.MailMessage("teconstruyecompany@gmail.com", receptor.CorreoElectronico, "Reporte Presupuesto", "Se adjunta el reporte de Presupuesto.");
-                        message.Attachments.Add(new Attachment(stream, "factura.xml"));
-
-                        smtp.Send(message);
-                        */
-
+                    Connection = conection,
+                    CommandText = "Select * from usp_screening_with_cinema(" + report_.ID_Proyection.ToString() + "," + report_.Butacas_Ocupadas.Count().ToString() + ")",
+                    CommandType = CommandType.Text
+                };
+                NpgsqlDataAdapter details = new NpgsqlDataAdapter(cmd);
+                details.Fill(ds);
+                Receptor receptor = GetReceptor(report_.ID_Cliente);
+                Emisor emisor = GetEmisor();
+                FacturaElectronicaCR factura = new FacturaElectronicaCR("50923191800310954724900100091010000000017120952430",
+                                                                        "00900001090000000019", emisor, receptor, "01", "01", "01",
+                                                                        ds, "01", 595);
+                //var xml = factura.CreaXMLFacturaElectronica();
+                //xml.Save(@"C:\Users\ggg\Escritorio\data.xml");
+                /*
+                using (var stream =  xml)
+                {
                     SmtpClient smtp = new SmtpClient
                     {
                         Port = 587,
@@ -100,17 +84,33 @@ namespace CineTec.Logic
 
                     smtp.UseDefaultCredentials = false;
                     smtp.Credentials = new NetworkCredential("teconstruyecompany@gmail.com", "teconstruye");
+                    var message = new System.Net.Mail.MailMessage("teconstruyecompany@gmail.com", receptor.CorreoElectronico, "Reporte Presupuesto", "Se adjunta el reporte de Presupuesto.");
+                    message.Attachments.Add(new Attachment(stream, "factura.xml"));
+
+                    smtp.Send(message);
+                    */
+
+                SmtpClient smtp = new SmtpClient
+                {
+                    Port = 587,
+                    UseDefaultCredentials = true,
+                    Host = "smtp.gmail.com",
+                    EnableSsl = true
+                };
+
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential("teconstruyecompany@gmail.com", "teconstruye");
 
 
-      
 
-                    var message = new System.Net.Mail.MailMessage("teconstruyecompany@gmail.com", "mau18alvarez@gmail.com", "Reporte Presupuesto", "Se adjunta el reporte de Presupuesto.");
-                    //var stream = new MemoryStream();
-                    //var reader = factura.CreaXMLFacturaElectronica();
 
-                    var stream = new MemoryStream();
+                var message = new System.Net.Mail.MailMessage("teconstruyecompany@gmail.com", receptor.CorreoElectronico, "Reporte Facturacion", "Se adjunta su factura electronica.");
+                //var stream = new MemoryStream();
+                //var reader = factura.CreaXMLFacturaElectronica();
 
-                   XmlDocument report = factura.CreaXMLFacturaElectronica();
+                var stream = new MemoryStream();
+
+                XmlDocument report = factura.CreaXMLFacturaElectronica();
 
 
                 /*
@@ -144,16 +144,16 @@ namespace CineTec.Logic
 
 
 
-            
-                    message.Attachments.Add(new Attachment(Path.GetTempPath()+"factura.xml"));
 
-                    smtp.Send(message);
+                message.Attachments.Add(new Attachment(Path.GetTempPath() + "factura.xml"));
 
-
-                    return HttpStatusCode.OK;
+                smtp.Send(message);
 
 
-                }
+                return HttpStatusCode.OK;
+
+
+            }
             //}
             //catch (Exception e)
             //{

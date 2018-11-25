@@ -34,6 +34,7 @@ namespace CineTec.Controllers
         // POST: api/Rooms
         public void Post([FromBody]string value)
         {
+
         }
 
         // PUT: api/Rooms/5
