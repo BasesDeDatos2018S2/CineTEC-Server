@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using CineTec.Logic;
+using CineTec.Models;
 
 namespace CineTec.Controllers
 {
@@ -13,6 +14,8 @@ namespace CineTec.Controllers
         private Client_Logic client_ = new Client_Logic();
 
         // GET: api/Client
+        [Route("api/Client")]
+        [HttpGet]
         public IHttpActionResult Get()
         {
             var result = client_.GetClients();
@@ -30,8 +33,12 @@ namespace CineTec.Controllers
         }
 
         // POST: api/Client
-        public void Post([FromBody]string value)
+        [Route("api/client/add")]
+        [HttpPost]
+        public IHttpActionResult Post([FromBody] Client_Data data)
         {
+            var result = client_.addClient(data);
+            return Ok(result);
         }
 
         // PUT: api/Client/5

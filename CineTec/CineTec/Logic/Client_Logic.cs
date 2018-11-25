@@ -1,6 +1,8 @@
-﻿using System;
+﻿using CineTec.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web;
@@ -46,6 +48,20 @@ namespace CineTec.Logic
                 return null;
             }
         }
-        
+
+        public HttpStatusCode addClient(Client_Data client_Data)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://ec2-18-188-33-240.us-east-2.compute.amazonaws.com:8080/");
+                var response = client.PostAsJsonAsync("api/client/add", client_Data).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    return HttpStatusCode.OK;
+                }
+                else
+                    return HttpStatusCode.InternalServerError;
+            }
+        }
     }
 }

@@ -112,6 +112,7 @@
     </Compile>
     <Compile Include="Logic\Movie_Logic.cs" />
     <Compile Include="Models\Actors_Data.cs" />
+    <Compile Include="Models\Client_Data.cs" />
     <Compile Include="Models\Movie_Data.cs" />
     <Compile Include="Models\Rooms_Data.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
