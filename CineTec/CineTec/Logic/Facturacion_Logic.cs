@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Web;
+using System.Xml;
 using CineTec.Facturacion;
 using CineTec.Models;
 using Newtonsoft.Json;
@@ -50,8 +52,8 @@ namespace CineTec.Logic
             NpgsqlConnection conection = cn.OpenConection();
             DataSet ds = new DataSet();
             //DataTable dt = new DataTable();
-            try /* Select After Validations*/
-            {
+            //try /* Select After Validations*/
+            //{
                 using (conection)
                 {
                     NpgsqlCommand cmd = new NpgsqlCommand
@@ -67,7 +69,7 @@ namespace CineTec.Logic
                     FacturaElectronicaCR factura = new FacturaElectronicaCR("50923191800310954724900100091010000000017120952430",
                                                                             "00900001090000000019", emisor, receptor, "01", "01", "01",
                                                                             ds, "01", 595);
-                    var xml = factura.CreaXMLFacturaElectronica();
+                    //var xml = factura.CreaXMLFacturaElectronica();
                     //xml.Save(@"C:\Users\ggg\Escritorio\data.xml");
                     /*
                     using (var stream =  xml)
@@ -86,17 +88,77 @@ namespace CineTec.Logic
                         message.Attachments.Add(new Attachment(stream, "factura.xml"));
 
                         smtp.Send(message);
+                        */
+
+                    SmtpClient smtp = new SmtpClient
+                    {
+                        Port = 587,
+                        UseDefaultCredentials = true,
+                        Host = "smtp.gmail.com",
+                        EnableSsl = true
+                    };
+
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = new NetworkCredential("teconstruyecompany@gmail.com", "teconstruye");
+
+
+      
+
+                    var message = new System.Net.Mail.MailMessage("teconstruyecompany@gmail.com", "mau18alvarez@gmail.com", "Reporte Presupuesto", "Se adjunta el reporte de Presupuesto.");
+                    //var stream = new MemoryStream();
+                    //var reader = factura.CreaXMLFacturaElectronica();
+
+                    var stream = new MemoryStream();
+
+                   XmlDocument report = factura.CreaXMLFacturaElectronica();
+
+
+                /*
+                XmlElement root = report.CreateElement("testsuites");
+                var items = report.GetElementsByTagName("testsuite");
+                for (int i = 0; i < items.Count; i++)
+                {
+                   root.AppendChild(items[i]);
+                }
+                report.AppendChild(root);
+                */
+                /*using (var sw = new StringWriter())
+               {
+                   using (var xw = XmlWriter.Create(sw))
+                   {
+                       xw.WriteStartDocument();
+                        xw.WriteStartElement("Factura");
+                        xw.WriteElementString("test523", "a12");
+                        xw.WriteEndElement();
+                        xw.WriteEndDocument();
+                        // Build Xml with xw.
+
+
                     }
-                    */
+                    System.Diagnostics.Debug.WriteLine(sw.ToString());
+                }*/
+
+                System.Diagnostics.Debug.WriteLine(Path.GetTempPath() + "factura.xml");
+                report.Save(Path.GetTempPath() + "factura.xml");
+
+
+
+
+            
+                    message.Attachments.Add(new Attachment(Path.GetTempPath()+"factura.xml"));
+
+                    smtp.Send(message);
+
+
                     return HttpStatusCode.OK;
 
 
                 }
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            //}
+            //catch (Exception e)
+            //{
+            //    throw e;
+            //}
         }
     }
 }
