@@ -34,7 +34,7 @@ namespace CineTec.Logic
                     while (reader.Read())
                     {
                         Movie_Data movie_Data = new Movie_Data();
-                        movie_Data.ID = Convert.ToInt32(reader["Id"]);
+                        movie_Data.id = Convert.ToInt32(reader["Id"]);
                         movie_Data.Nombre_Original = Convert.ToString(reader["Original_name"]);
                         movie_Data.Nombre = Convert.ToString(reader["Traduced_name"]);
                         movie_Data.Estado = Convert.ToBoolean(reader["Billboard_status"]);
@@ -55,7 +55,7 @@ namespace CineTec.Logic
                         NpgsqlCommand cmd2 = new NpgsqlCommand
                         {
                             Connection = conection,
-                            CommandText = "Select* from usp_actors_movie("+m.ID+")",
+                            CommandText = "Select* from usp_actors_movie("+m.id+")",
                             CommandType = CommandType.Text
                         };
                         //NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
@@ -65,7 +65,7 @@ namespace CineTec.Logic
                         while (reader2.Read())
                         {
                             Actors_Data actors_Data = new Actors_Data();
-                            actors_Data.ID = Convert.ToInt32(reader2["Id"]);
+                            actors_Data.id = Convert.ToInt32(reader2["Id"]);
                             actors_Data.Name = Convert.ToString(reader2["Name"]);
                             actors_Data.LastName = Convert.ToString(reader2["Lastname"]);
                             ProtagonistasList.Add(actors_Data);

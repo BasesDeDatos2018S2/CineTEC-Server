@@ -33,7 +33,7 @@ namespace CineTec.Logic
                     while (reader.Read())
                     {
                         Rooms_Data rooms_Data = new Rooms_Data();
-                        rooms_Data.ID = Convert.ToInt32(reader["id"]);
+                        rooms_Data.id = Convert.ToInt32(reader["id"]);
                         rooms_Data.Nombre = Convert.ToString(reader["name"]);
                         rooms_Data.Size = Convert.ToInt32(reader["capacity"]);
                         rooms_Data.Cine = Convert.ToInt32(reader["id_movie_theater"]);

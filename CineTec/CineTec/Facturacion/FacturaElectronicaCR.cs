@@ -61,7 +61,7 @@ namespace CineTec.Facturacion
         // 'Es posible que algunos no los ocupen y requieran otros, es normal y los veremos conforme vayamos 
         // 'desarrollando la factura. Cuando se envien los datos a Hacienda, ahi seguramente nos daremos cuenta en las pruebas
 
-        public MemoryStream CreaXMLFacturaElectronica()
+        public XmlDocument CreaXMLFacturaElectronica()
         {
             try
             {

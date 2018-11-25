@@ -69,6 +69,7 @@ namespace CineTec.Logic
                                                                             ds, "01", 595);
                     var xml = factura.CreaXMLFacturaElectronica();
                     //xml.Save(@"C:\Users\ggg\Escritorio\data.xml");
+                    /*
                     using (var stream =  xml)
                     {
                         SmtpClient smtp = new SmtpClient
@@ -86,6 +87,7 @@ namespace CineTec.Logic
 
                         smtp.Send(message);
                     }
+                    */
                     return HttpStatusCode.OK;
 
 

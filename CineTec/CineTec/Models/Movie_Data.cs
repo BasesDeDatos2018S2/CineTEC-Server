@@ -7,7 +7,7 @@ namespace CineTec.Models
 {
     public class Movie_Data
     {
-        public int ID { get; set; }
+        public int id { get; set; }
         public string Nombre_Original { get; set; }
         public string Nombre { get; set; }
         public bool Estado { get; set; }

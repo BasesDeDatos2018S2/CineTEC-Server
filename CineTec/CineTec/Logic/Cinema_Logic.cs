@@ -33,7 +33,7 @@ namespace CineTec.Logic
                     while (reader.Read())
                     {
                         Cinema_Data cinema_Data = new Cinema_Data();
-                        cinema_Data.ID = Convert.ToInt32(reader["id"]);
+                        cinema_Data.id = Convert.ToInt32(reader["id"]);
                         cinema_Data.Nombre = Convert.ToString(reader["name"]);
                         cinema_Data.Ubicacion = Convert.ToString(reader["ubication"]);
                         Cinema_List.Add(cinema_Data);
@@ -49,7 +49,7 @@ namespace CineTec.Logic
                         NpgsqlCommand cmd2 = new NpgsqlCommand
                         {
                             Connection = conection,
-                            CommandText = "select* from usp_movie_room("+m.ID+")",
+                            CommandText = "select* from usp_movie_room("+m.id+")",
                             CommandType = CommandType.Text
                         };
                         //NpgsqlDataAdapter da = new NpgsqlDataAdapter(cmd);
