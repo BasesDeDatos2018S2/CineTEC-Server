@@ -7,8 +7,8 @@ namespace CineTec.Models
 {
     public class Actors_Data
     {
-        public int ID_ { get; set; }
-        public string Name_ { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
         public string LastName { get; set; }
     }
 }

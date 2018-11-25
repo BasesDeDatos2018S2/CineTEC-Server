@@ -7,14 +7,14 @@ namespace CineTec.Models
 {
     public class Movie_Data
     {
-        public int ID_ { get; set; }
-        public string Nombre_Original_ { get; set; }
-        public string Nombre_ { get; set; }
-        public bool Estado_ { get; set; }
-        public int Duracion_ { get; set; }
-        public string Director_ { get; set; }
-        public List<Object> Protagonistas_ { get; set; }
-        public string Clasificacion_ { get; set; }
-        public string Imagen_ { get; set; }
+        public int ID { get; set; }
+        public string Nombre_Original { get; set; }
+        public string Nombre { get; set; }
+        public bool Estado { get; set; }
+        public int Duracion { get; set; }
+        public string Director { get; set; }
+        public List<Object> Protagonistas { get; set; }
+        public string Clasificacion { get; set; }
+        public string Imagen { get; set; }
     }
 }

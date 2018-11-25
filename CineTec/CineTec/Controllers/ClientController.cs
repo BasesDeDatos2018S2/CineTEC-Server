@@ -41,6 +41,16 @@ namespace CineTec.Controllers
             return Ok(result);
         }
 
+        // POST: api/Client
+        [Route("api/client/report")]
+        [HttpPost]
+        public IHttpActionResult Report([FromBody] Report_Data data)
+        {
+            Facturacion_Logic _Logic = new Facturacion_Logic();
+            _Logic.CreateXml(data);
+            return Ok();
+        }
+
         // PUT: api/Client/5
         public void Put(int id, [FromBody]string value)
         {

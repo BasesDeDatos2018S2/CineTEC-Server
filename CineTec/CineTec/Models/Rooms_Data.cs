@@ -7,9 +7,9 @@ namespace CineTec.Models
 {
     public class Rooms_Data
     {
-        public int ID_ { get; set; }
-        public string Nombre_ { get; set; }
-        public int Cine_ { get; set; }
-        public int Size_ { get; set; }
+        public int ID { get; set; }
+        public string Nombre { get; set; }
+        public int Cine { get; set; }
+        public int Size { get; set; }
     }
 }

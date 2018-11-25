@@ -7,9 +7,9 @@ namespace CineTec.Models
 {
     public class Cinema_Data
     {
-        public int ID_ { get; set; }
-        public string Nombre_ { get; set; }
-        public string Ubicacion_ { get; set; }
-        public List<Object> Salas_ { get; set; }
+        public int id { get; set; }
+        public string Nombre { get; set; }
+        public string Ubicacion { get; set; }
+        public List<Object> Salas { get; set; }
     }
 }
